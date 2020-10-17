@@ -24,6 +24,7 @@ var questions = [
 
 function countdown() {
     var timeLeft = 75;
+    timerEl.textContent = "Time: " + timeLeft;
   
     //begin timer from 75
     var timeInterval = setInterval(function() {
@@ -38,16 +39,12 @@ function countdown() {
     //populate question area
     populate();
   };
-var nextquestion = function(questions) {
 
-    i++;
-    populate(questions);
-}
 var populate = function(event) {
     // Remove old text from question area
     document.getElementById("start").remove();
-    document.getElementById("quiz-title").textContent="";
-    document.getElementById("quiz-descript").textContent="";
+    document.getElementById("quiz-title").remove();
+    document.getElementById("quiz-descript").remove();
     //create a DIV to hold question and answers
     var questionContainerEl = document.createElement("div");
     questionContainerEl.className = "question";
@@ -59,18 +56,44 @@ var populate = function(event) {
     for (j=0; j < questions[i].answers.length; j++) {
         var answerEl = document.createElement("button");
         answerEl.className = "answerBtn" + j;
+        answerEl.setAttribute("value", j);
+        answerEl.onclick = nextQuestion;
+        answerEl.textContent = questions[i].answers[j];
+        questionContainerEl.appendChild(answerEl);
+    };
+   
+}
+
+var nextQuestion = function(event) {
+    // Check the previous response
+    response = event.target.value;
+    console.log(response, questions[i].correct);
+    if (response - questions[i].correct === 0) {
+        console.log("Good job!");
+    } else {
+        console.log("Terrible!");
+    }
+    i++;
+    if (i === questions.length) {
+        window.alert("You have finished the quiz!");
+    }
+    //document.getElementsByClassName("question").remove();
+    var questionContainerEl = document.createElement("div");
+    questionContainerEl.className = "question";
+    mainEl.appendChild(questionContainerEl);
+
+    var questionEl = document.createElement("h2");
+    questionEl.textContent = questions[i].question;
+    questionContainerEl.appendChild(questionEl);
+    for (j=0; j < questions[i].answers.length; j++) {
+        var answerEl = document.createElement("button");
+        answerEl.className = "answerBtn" + j;
+        answerEl.onclick = nextQuestion;
+        answerEl.setAttribute("value", j);
         answerEl.textContent = questions[i].answers[j];
         questionContainerEl.appendChild(answerEl);
     };
     var answerBtn = document.getElementsByClassName("answerBtn");
 }
-
 startBtn.onclick = countdown;
-//startBtn.onclick = populate();
-//startBtn.addEventListener("click", populate());
-/*mainEl.addEventListener("click", function(event) {
-    if (event.target){
-    i++;
-    populate();
-    }
-})*/
+
