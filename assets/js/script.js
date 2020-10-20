@@ -237,8 +237,8 @@ var submitScore = function() {
             notHigh.appendChild(tryBtn);
             i = 0;
             score = 0;
-            timeLeft = 76;
-            tryBtn.onclick = createQuestion;
+            timeLeft = 75;
+            tryBtn.onclick = countdown;
 
         }
         // If it does, reset the values of all the high scores
@@ -303,8 +303,8 @@ var showScores = function() {
     scoreContainer.appendChild(tryBtn);
     i = 0;
     score = 0;
-    timeLeft = 76;
-    tryBtn.onclick = createQuestion;
+    timeLeft = 75;
+    tryBtn.onclick = countdown;
 
 }
 
