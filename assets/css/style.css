@@ -17,12 +17,16 @@ header div a {
     display: flex;
     padding: 15px 15px;
     border: 2px solid var(--grey);
-    background: blue;
+    background: lightpink;
     border-radius: 12px;
     margin-bottom: 20px;
-    color: white;
+    color: black;
     width: 300px;
     justify-content: center;
+}
+
+#view {
+    width: 100px;
 }
 
 #main {
