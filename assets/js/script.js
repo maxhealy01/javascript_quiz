@@ -197,6 +197,7 @@ var nextQuestion = function(event) {
 }
 
 var submitScore = function() {
+    timeLeft = 0;
     clearMain();
     
     // Create the text to notify user the game is over
