@@ -11,7 +11,7 @@ var lastResponse = 0;
 // Set three empty high score objects
 if (!localStorage.getItem("highScore1")) {
     var highScore1 = {
-    in :'AA',
+    in :'NA',
     scr: 0
     }
     localStorage.setItem("highScore1", JSON.stringify(highScore1))
@@ -19,7 +19,7 @@ if (!localStorage.getItem("highScore1")) {
 
 if (!localStorage.getItem("highScore2")) {
     var highScore2 = {
-    in :'AA',
+    in :'NA',
     scr: 0
     }
     localStorage.setItem("highScore2", JSON.stringify(highScore2))
@@ -27,7 +27,7 @@ if (!localStorage.getItem("highScore2")) {
 
 if (!localStorage.getItem("highScore3")) {
     var highScore3 = {
-    in :'AA',
+    in :'NA',
     scr: 0
     }
     localStorage.setItem("highScore3", JSON.stringify(highScore3))
@@ -36,8 +36,6 @@ if (!localStorage.getItem("highScore3")) {
 var highScore1 = JSON.parse(localStorage.getItem("highScore1"));
 var highScore2 = JSON.parse(localStorage.getItem("highScore2"));
 var highScore3 = JSON.parse(localStorage.getItem("highScore3"));
-
-console.log(highScore1,highScore2,highScore3);
 
 var questions = [
     {
@@ -232,6 +230,8 @@ var submitScore = function() {
             notHigh.textContent = "You did not beat the high score. Try again!"
             mainEl.appendChild(notHigh);
 
+
+            // Create a "try again" button to let the user play again
             var tryBtn = document.createElement("button");
             tryBtn.textContent = "Try again!";
             tryBtn.className = "btn";
@@ -280,9 +280,11 @@ var submitScore = function() {
 
 var showScores = function() {
     clearMain();
+    // Create a container for the high scores
     var scoreContainer = document.createElement("div");
     mainEl.appendChild(scoreContainer);
 
+    // Show the high scores on the page
     var scoreEl = document.createElement("h3");
     var highScore1 = JSON.parse(localStorage.getItem("highScore1"));
     scoreEl.textContent = highScore1.in + " " + highScore1.scr;
@@ -298,6 +300,7 @@ var showScores = function() {
     scoreEl3.textContent = highScore3.in + " " + highScore3.scr;
     scoreContainer.appendChild(scoreEl3);
 
+    // Create a "try again" button to let the user play again
     var tryBtn = document.createElement("button");
     tryBtn.textContent = "Try again!";
     tryBtn.className = "btn";
